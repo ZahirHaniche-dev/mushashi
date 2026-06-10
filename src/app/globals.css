@@ -1,26 +1,73 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --rouge: #C41E3A;
+  --rouge-hover: #a01830;
+  --bg-light: #fbfaf7;
+  --bg-dark: #1a0500;
+  --text-dark: #1a0500;
+  --text-light: #f5f0e8;
+  --text-muted: #8b7355;
+  --border: rgba(26, 5, 0, 0.12);
+  --font-mincho: var(--font-mincho);
+  --font-gothic: var(--font-gothic);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  --color-rouge: #C41E3A;
+  --color-washi: #fbfaf7;
+  --color-dark: #1a0500;
+  --color-cream: #f5f0e8;
+  --color-muted: #8b7355;
+  --font-family-mincho: var(--font-mincho), "Noto Serif JP", serif;
+  --font-family-gothic: var(--font-gothic), "Zen Kaku Gothic New", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  font-family: var(--font-gothic), sans-serif;
+}
+
+.font-mincho { font-family: var(--font-mincho), serif; }
+.font-gothic { font-family: var(--font-gothic), sans-serif; }
+
+/* Seigaiha dark background pattern */
+.bg-seigaiha {
+  background-color: var(--bg-dark);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='40'%3E%3Cellipse cx='30' cy='40' rx='30' ry='30' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1'/%3E%3Cellipse cx='0' cy='40' rx='30' ry='30' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1'/%3E%3Cellipse cx='60' cy='40' rx='30' ry='30' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1'/%3E%3Cellipse cx='15' cy='20' rx='30' ry='30' fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1'/%3E%3Cellipse cx='45' cy='20' rx='30' ry='30' fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 60px 40px;
+}
+
+/* Kanji label style */
+.kanji-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-gothic), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--rouge);
+}
+.kanji-label::after {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 3rem;
+  background: var(--rouge);
+}
+
+/* Scroll-reveal animation */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  animation: fadeUp 0.7s ease forwards;
 }
